@@ -1,8 +1,10 @@
 # Parker
 
+  undefined
+
   ## Description 
   
-Parker
+fdsadfsdfkjfdsal
   
   
   ## Table of Contents
@@ -15,12 +17,12 @@ Parker
   
   ## Installation
   
-  Parker
+  askjfd;laksjdfk
   
   
   ## Usage 
 
- Parker
+ ksjfdjsaljdf;k
   
   ## Credits
   
@@ -28,5 +30,22 @@ Parker
    
   ## License
 
+  GNU General Public License v3.0
+
+  ## Badges
+ 
+  ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+  
+  ## Contributing
+
+  undefined
+  
+  ## Tests
+
   undefined
 
+  ## Questions
+
+  If you have further questions about this program, you can contact me through github: https://github.com/parkerrobison 
+  or by email: parkerobison@gmail.com.
+  Please reference the project in question in the message.

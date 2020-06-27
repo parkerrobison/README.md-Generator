@@ -31,7 +31,7 @@ const qPrompt = () => {
         },
         {
             type: 'confirm',
-            name: 'tableOfContents',
+            name: 'toc',
             message: 'Will the README.md include a table of contents?',
             default: false
         },
@@ -50,7 +50,7 @@ const qPrompt = () => {
         {
             type: 'input',
             name: 'usage',
-            message: 'Provide instructions for project use. (Resquired)',
+            message: 'Provide instructions for project use. (Required)',
             validate: useageInput => {
                 if (useageInput) {
                     return true;
@@ -70,7 +70,53 @@ const qPrompt = () => {
             name: 'license',
             choices: ['Apache License v2.0', 'GNU General Public License v3.0', 'MIT License'],
         },
-
+        {
+            type: 'confirm',
+            name: 'badgesConfirm',
+            message: 'Will your README include badges?',
+            default: false
+        },
+        {
+            type: 'list',
+            name: 'badges',
+            message: 'What badges would you like to include? (Check all that apply)',
+            choices: [],
+            when: ({badgesConfirm}) => badgesConfirm
+        },
+        {
+            type: 'confirm',
+            name: 'contributeConfirm',
+            message: 'Would you like for other developers to contribute to your project?',
+            default: false
+        },
+        {
+            type: 'input',
+            name: 'customContribute',
+            message: 'Enter your custom contribution guidelines here',
+            when: ({contributeConfirm}) => contributeConfirm
+        },
+        {
+            type: 'confirm',
+            name: 'testConfirm',
+            message: 'Would you like to write any tests for your program?',
+            default: false
+        },
+        {
+            type: 'input',
+            name: 'test',
+            message: 'Please include testing instructions here',
+            when: ({testConfirm}) => testConfirm
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email address?'
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your github username?'
+        }
         
 
     ])
@@ -83,9 +129,11 @@ qPrompt()
     data.usage=userInput.usage;
     data.credits=userInput.credits;
     data.license=userInput.license;
-    // data.badges=userInput.badges;
-    // data.contribution=userInput.contribution;
-    // data.test=userInput.test;
+    data.badges=userInput.badges;
+    data.contribution=userInput.contribution;
+    data.test=userInput.test;
+    data.email=userInput.email;
+    data.github=userInput.github
     console.log(data);
     const rmString= generateMarkdown(data)
     writeToFile("./README.md", rmString)
@@ -121,9 +169,9 @@ init();
 //(X) THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
 //() WHEN I choose a license for my application from a list of options
 //() THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
-//() WHEN I enter my GitHub username
-//() THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-//() WHEN I enter my email address
-//() THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
+//(X) WHEN I enter my GitHub username
+//(X) THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
+//(X) WHEN I enter my email address
+//(X) THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
 //(X) WHEN I click on the links in the Table of Contents
 //(X) THEN I am taken to the corresponding section of the README
