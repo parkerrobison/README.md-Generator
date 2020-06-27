@@ -1,13 +1,13 @@
-// function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
+# ksjfdka;lsdf
 
   ## Description 
   
-${data.description}
+sdkjfk;lasndf;lskaflasiodfmkfwmqiefmqwkefmf
   
   
-  ## Table of Contents
+  ## Table of Contents (Optional)
+  
+  If your README is very long, add a table of contents to make it easy for users to find what they need.
   
   * [Installation](#installation)
   * [Usage](#usage)
@@ -17,39 +17,35 @@ ${data.description}
   
   ## Installation
   
-  ${data.installation}
+  lksndfandsnfkalnfd
   
   
   ## Usage 
 
- ${data.usage}
+ aklsjdfajsdfkmifmwfoemfd
   
   ## Credits
   
-  ${data.credits}
+  undefined
    
   ## License
 
-  ${data.licence}
+  undefined
   
   ## Badges
  
   ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
   
-  ${data.badges}
+  undefined
   
   
   ## Contributing
 
-  ${data.contribution}
+  undefined
   
   ## Tests
 
-  ${data.test}
+  undefined
   
 
 
-`;
-}
-
-module.exports = generateMarkdown;

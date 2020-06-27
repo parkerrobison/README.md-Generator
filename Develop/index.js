@@ -1,43 +1,94 @@
-// array of questions for user
-const questions = [ 
-    // 'What is the title of your project? (Required)',
-    // 'Provide a description of the project (Required)',
-    // 'Will your README have a Table of Contents?',
-    // 'How do you install the project?',
-    // 'Usage?',
-    // // this is a list of options
-    // 'License?',
-    // 'Contribution guidelines',
-    // 'Test instructions',
-   
-
-];
-
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown')
+const data = {}
 
 const qPrompt = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'name',
-            message: 'What is your name?',
+            name: 'title',
+            message: 'What is the title of your project? (Required)',
             validate: nameInput => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log('Please enter your name.')
+                    console.log('Please enter your project title.')
                 }
             }
         },
         {
-
+            type: 'input',
+            name: 'description',
+            message: 'Provide a description of the project (Required)',
+            validate: desInput => {
+                if (desInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your a description of your project.')
+                }
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'tableOfContents',
+            message: 'Will the README.md include a table of contents?',
+            default: false
+        },
+        // table of content info goes here.
+        {
+            type: 'input',
+            name: 'installation',
+            message: 'What are the steps required to install your project? (Required)',
+            validate: instInput => {
+                if (instInput) {
+                    return true;
+                } else {
+                    console.log('Please provide installtion steps.')
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'usage',
+            message: 'Provide instructions for project use. (Resquired)',
+            validate: useageInput => {
+                if (useageInput) {
+                    return true;
+                } else {
+                    console.log('Please provide instructions.')
+                }
+            }
         }
         
 
     ])
 }
+qPrompt()
+.then (userInput => {
+    data.title=userInput.title;
+    data.description=userInput.description;
+    data.installation=userInput.installation;
+    data.usage=userInput.usage;
+    data.credits=userInput.credits;
+    data.license=userInput.license;
+    data.badges=userInput.badges;
+    data.contribution=userInput.contribution;
+    data.test=userInput.test;
+    console.log(data);
+    const rmString= generateMarkdown(data)
+    writeToFile("./README.md", rmString)
+})
+
 // function to write README file
-function writeToFile(fileName, data) {
+function writeToFile(fileName, output) {
+    fs.writeFile(fileName, output, (err) => {
+        if (err) {
+            throw (err)
+        } else {
+            console.log('Success!')
+        }
+    }) 
 }
 
 // function to initialize program
