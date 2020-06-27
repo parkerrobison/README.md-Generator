@@ -31,25 +31,25 @@ ${data.description}
   ## License
 
   ${data.licence}
-  
-  ## Badges
- 
-  ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
-  
-  ${data.badges}
-  
-  
-  ## Contributing
-
-  ${data.contribution}
-  
-  ## Tests
-
-  ${data.test}
-  
-
 
 `;
 }
 
 module.exports = generateMarkdown;
+
+// add in after license when you get the MVP figured out.
+// ## Badges
+ 
+//   ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+  
+//   ${data.badges}
+  
+  
+//   ## Contributing
+
+//   ${data.contribution}
+  
+//   ## Tests
+
+//   ${data.test}
+  
