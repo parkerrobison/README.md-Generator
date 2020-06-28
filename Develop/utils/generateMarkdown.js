@@ -24,6 +24,18 @@ const displayTest = (testAns, test) => {
   `
 }
 
+const displayCon = (conAns, con) => {
+  console.log(conAns,con)
+  if (!conAns) {
+    return '';
+  }
+  return `
+  ## Contributing
+
+  ${data.contribution}
+  `
+}
+
 function generateMarkdown(data) {
   return `# ${data.title}
 
@@ -31,9 +43,9 @@ function generateMarkdown(data) {
 
   ## Description 
   
-${data.description}
+  ${data.description}
   
-${showTable(data.toc)}
+  ${showTable(data.toc)}
 
   ## Installation
   
@@ -42,7 +54,7 @@ ${showTable(data.toc)}
   
   ## Usage 
 
- ${data.usage}
+  ${data.usage}
   
   ## Credits
   
@@ -53,11 +65,9 @@ ${showTable(data.toc)}
 
   ${data.license}
   
-  ## Contributing
-
-  ${data.contribution}
+  ${displayCon(data.contributeConfirm,data.contribtion)}
   
- ${displayTest(data.testConfirm,data.test)}
+  ${displayTest(data.testConfirm,data.test)}
 
   ## Questions
 
