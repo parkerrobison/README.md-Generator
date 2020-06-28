@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown')
+// the answers from qPrompt will be added to this object.
 const data = {}
 
 const qPrompt = () => {
@@ -50,7 +51,7 @@ const qPrompt = () => {
         {
             type: 'input',
             name: 'usage',
-            message: 'Provide instructions for project use. (Required)',
+            message: 'Provide instructions for how to use this project. (Required)',
             validate: useageInput => {
                 if (useageInput) {
                     return true;
@@ -70,18 +71,21 @@ const qPrompt = () => {
             name: 'license',
             choices: ['Apache', 'GNU', 'MIT'],
         },
+        // this checks to see if the user would like to add a contribution section 
         {
             type: 'confirm',
             name: 'contributeConfirm',
             message: 'Would you like for other developers to contribute to your project?',
             default: false
         },
+        // if they answer yes they will be directed to this prompt. No will exclude the section.
         {
             type: 'input',
             name: 'contribution',
             message: 'Enter your custom contribution guidelines here',
             when: ({contributeConfirm}) => contributeConfirm
         },
+        // this checks to see if the user wants to add a test section.
         {
             type: 'confirm',
             name: 'testConfirm',
@@ -104,8 +108,6 @@ const qPrompt = () => {
             name: 'github',
             message: 'What is your github username?'
         }
-        
-
     ])
 }
 
@@ -141,25 +143,10 @@ function init() {
         const rmString= generateMarkdown(data)
         writeToFile("./README.md", rmString)
     })
+    .catch(err => {
+        console.log(err);
+    });
 }
 
 // function call to initialize program
 init();
-
-
-//() GIVEN a command-line application that accepts user input
-//() WHEN I am prompted for information about my application repository
-//() THEN a high-quality, professional README.md is generated with the title of my project and sections entitled 
-//      Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
-//(X) WHEN I enter my project title
-//(X) THEN this is displayed as the title of the README
-//(X) WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
-//(X) THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-//(X) WHEN I choose a license for my application from a list of options
-//(X) THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
-//(X) WHEN I enter my GitHub username
-//(X) THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-//(X) WHEN I enter my email address
-//(X) THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-//(X) WHEN I click on the links in the Table of Contents
-//(X) THEN I am taken to the corresponding section of the README

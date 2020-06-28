@@ -1,4 +1,4 @@
-// function to generate markdown for README
+// function to show the table of contents if the user wants to include one in their readme.
 const showTable = tocText => {
   if (!tocText) {
     return '';
@@ -12,6 +12,7 @@ const showTable = tocText => {
   * [License](#license)
   `
 }
+// function to show the Test section if the user wants to include one in their readme.
 const displayTest = (testAns, test) => {
   console.log(testAns,test)
   if (!testAns) {
@@ -23,19 +24,18 @@ const displayTest = (testAns, test) => {
   ${test}
   `
 }
-
+// function to show the Contribution section if the user wants to include one in their readme.
 const displayCon = (conAns, con) => {
-  console.log(conAns,con)
   if (!conAns) {
     return '';
   }
   return `
   ## Contributing
 
-  ${data.contribution}
+  ${con}
   `
 }
-
+// function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
 
@@ -51,7 +51,6 @@ function generateMarkdown(data) {
   
   ${data.installation}
   
-  
   ## Usage 
 
   ${data.usage}
@@ -62,18 +61,18 @@ function generateMarkdown(data) {
    
   ## License
 
-
   ${data.license}
   
-  ${displayCon(data.contributeConfirm,data.contribtion)}
+  ${displayCon(data.contributeConfirm,data.contribution)}
   
   ${displayTest(data.testConfirm,data.test)}
 
   ## Questions
 
-  If you have further questions about this program, you can contact me through github: https://github.com/${data.github} 
-  or by email: ${data.email}.
-  Please reference the project in question in the message.
+  If you run into any errors or have further questions about this program, you can contact here: 
+  *github: https://github.com/${data.github} 
+  *email: ${data.email}.
+  Please reference the project in question in the message. Thank you.
 `;
 }
 
