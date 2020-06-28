@@ -68,20 +68,7 @@ const qPrompt = () => {
             type: 'list',
             message: 'What type of license does your project need?',
             name: 'license',
-            choices: ['Apache License v2.0', 'GNU General Public License v3.0', 'MIT License'],
-        },
-        {
-            type: 'confirm',
-            name: 'badgesConfirm',
-            message: 'Will your README include badges?',
-            default: false
-        },
-        {
-            type: 'list',
-            name: 'badges',
-            message: 'What badges would you like to include? (Check all that apply)',
-            choices: [],
-            when: ({badgesConfirm}) => badgesConfirm
+            choices: ['Apache', 'GNU', 'MIT'],
         },
         {
             type: 'confirm',
@@ -91,7 +78,7 @@ const qPrompt = () => {
         },
         {
             type: 'input',
-            name: 'customContribute',
+            name: 'contribution',
             message: 'Enter your custom contribution guidelines here',
             when: ({contributeConfirm}) => contributeConfirm
         },
@@ -121,23 +108,6 @@ const qPrompt = () => {
 
     ])
 }
-qPrompt()
-.then (userInput => {
-    data.title=userInput.title;
-    data.description=userInput.description;
-    data.installation=userInput.installation;
-    data.usage=userInput.usage;
-    data.credits=userInput.credits;
-    data.license=userInput.license;
-    data.badges=userInput.badges;
-    data.contribution=userInput.contribution;
-    data.test=userInput.test;
-    data.email=userInput.email;
-    data.github=userInput.github
-    console.log(data);
-    const rmString= generateMarkdown(data)
-    writeToFile("./README.md", rmString)
-})
 
 // function to write README file
 function writeToFile(fileName, output) {
@@ -152,7 +122,25 @@ function writeToFile(fileName, output) {
 
 // function to initialize program
 function init() {
-
+    qPrompt()
+    .then (userInput => {
+        data.title=userInput.title;
+        data.description=userInput.description;
+        data.installation=userInput.installation;
+        data.toc=userInput.toc;
+        data.usage=userInput.usage;
+        data.credits=userInput.credits;
+        data.license=userInput.license;
+        data.contributeConfirm=userInput.contributeConfirm;
+        data.contribution=userInput.contribution;
+        data.testConfirm=userInput.testConfirm;
+        data.test=userInput.test;
+        data.email=userInput.email;
+        data.github=userInput.github
+        console.log(data);
+        const rmString= generateMarkdown(data)
+        writeToFile("./README.md", rmString)
+    })
 }
 
 // function call to initialize program
@@ -162,13 +150,13 @@ init();
 //() GIVEN a command-line application that accepts user input
 //() WHEN I am prompted for information about my application repository
 //() THEN a high-quality, professional README.md is generated with the title of my project and sections entitled 
-//()  Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
+//      Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
 //(X) WHEN I enter my project title
 //(X) THEN this is displayed as the title of the README
 //(X) WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
 //(X) THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-//() WHEN I choose a license for my application from a list of options
-//() THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
+//(X) WHEN I choose a license for my application from a list of options
+//(X) THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
 //(X) WHEN I enter my GitHub username
 //(X) THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
 //(X) WHEN I enter my email address

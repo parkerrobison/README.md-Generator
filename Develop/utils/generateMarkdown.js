@@ -1,22 +1,40 @@
 // function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
-
-  ${data.badges}
-
-  ## Description 
-  
-${data.description}
-  
-  
+const showTable = tocText => {
+  if (!tocText) {
+    return '';
+  }
+  return `
   ## Table of Contents
   
   * [Installation](#installation)
   * [Usage](#usage)
   * [Credits](#credits)
   * [License](#license)
+  `
+}
+const displayTest = (testAns, test) => {
+  console.log(testAns,test)
+  if (!testAns) {
+    return '';
+  }
+  return `
+  ## Tests
+
+  ${test}
+  `
+}
+
+function generateMarkdown(data) {
+  return `# ${data.title}
+
+  ![licensebadge](https://img.shields.io/badge/license-${data.license}-blue)
+
+  ## Description 
   
+${data.description}
   
+${showTable(data.toc)}
+
   ## Installation
   
   ${data.installation}
@@ -32,19 +50,14 @@ ${data.description}
    
   ## License
 
-  ${data.license}
 
-  ## Badges
- 
-  ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+  ${data.license}
   
   ## Contributing
 
   ${data.contribution}
   
-  ## Tests
-
-  ${data.test}
+ ${displayTest(data.testConfirm,data.test)}
 
   ## Questions
 
