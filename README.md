@@ -17,14 +17,15 @@
 
   ## Installation
   
-  Install gitbash on your computer. Install jsnode on your computer. Fork the repository on github to your computer.
+  Install gitbash on your computer. Install js node on your computer. Fork the repository from github to your computer.
   
   ## Usage 
 
-  Once the installation process is done, navigate to the root folder of the readme generator. There key in 'node index.js' and hit enter. Follow the prompt on the terminal.
+  Once the installation process is done, navigate to the root folder of the readme generator. There key in 'node index.js' and hit enter. Follow the prompt on the terminal. To watch a walkthrough click the following link:
+  https://drive.google.com/file/d/1IqqDkTDTfmaqZ116HTVo1qrpJgyt9aBb/view.
   
   ## Credits
-  
+  Xander Rapstine https://github.com/Xandromus : supplied starter code
   
    
   ## License
@@ -36,7 +37,7 @@
   
   ## Tests
 
-  To be determined
+  No tests are avaialbe at this time but there will be tests added in the future. 
   
 
   ## Questions
